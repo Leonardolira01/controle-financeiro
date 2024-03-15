@@ -1,8 +1,17 @@
-import React from 'react';
+import { FC, useState } from 'react';
 
-const Login = ({ onLogin }) => {
+interface LoginProps {
+  onLogin: () => void;
+}
+
+const Login: FC<LoginProps> = ({ onLogin }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleLogin = () => {
-    // Simulando um processo de login bem-sucedido
+    // Aqui você pode adicionar a lógica de autenticação
+    // Por exemplo, verificar o usuário e a senha
+    // e chamar onLogin quando estiver autenticado
     onLogin();
   };
 
@@ -10,16 +19,28 @@ const Login = ({ onLogin }) => {
     <div>
       <h2>Faça seu login:</h2>
       <form>
-        <input type="email" id="email" placeholder="E-mail" />
+        <input
+          type="text"
+          id="username" placeholder='E-mail:'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <br />
         <br />
-        <input type="text" id="codigo" placeholder="Código de Verificação" />
+        <input
+          type="password"
+          id="password" placeholder='Código de Verificação:'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <br />
         <br />
-        <button type="button" onClick={handleLogin}>Entrar</button>
+        <button type="button" onClick={handleLogin}>
+          Entrar
+        </button>
       </form>
     </div>
   );
-}
+};
 
 export default Login;
